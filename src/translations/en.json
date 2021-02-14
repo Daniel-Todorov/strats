@@ -1,0 +1,17 @@
+{
+  "websiteName": "Beyond Ocean",
+  "pages": {
+    "titles": {
+      "home": "Home | @:websiteName"
+    },
+    "names": {
+      "Home": "Home"
+    }
+  },
+  "footer": {
+    "createdByAuthor": "Created by: <strong>Daniel Todorov</strong>"
+  },
+  "languageSwitcher": {
+    "Language": "English"
+  }
+}

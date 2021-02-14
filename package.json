@@ -1,12 +1,16 @@
 {
   "name": "strats",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/translations/**/*.json'",
+    "start": "node ./server/app"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
