@@ -1,0 +1,43 @@
+body, div, section, header, footer, nav, span, input, select, textarea, h1, h2, h3, h4, h5, p, strong, ul, li, form, fieldset, legend, a, button, small {
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+}
+
+strong {
+    font-weight: bold;
+}
+
+img {
+    display: inline-block;
+}
+
+input, select, button, textarea {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    font-size: var(--default-font-size);
+    font-family: var(--default-font-family);
+    color: var(--default-text-color);
+    background-color: var(--default-color);
+    line-height: var(--default-line-height);
+}
+
+html, body, #app {
+    height: 100vh;
+}

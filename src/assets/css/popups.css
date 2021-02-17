@@ -1,0 +1,41 @@
+.popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.popup-close-button {
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    font-size: var(--font-size-biggest);
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.popup-content {
+    width: 400px;
+    max-width: 90%;
+    padding: 8px 16px 16px;
+    border: 1px solid var(--default-text-color-darker);
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.popup-content .form fieldset {
+    border-top: 1px solid var(--default-text-color-darker);
+}
+
+.popup-content .form legend {
+    padding: 16px;
+}
