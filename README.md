@@ -15,5 +15,10 @@ npm run serve
 npm run build
 ```
 
+### Starts the backend server
+```
+npm run start
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
