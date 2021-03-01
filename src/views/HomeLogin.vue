@@ -7,9 +7,9 @@
                     <p class="or">{{$t('labels.or')}}</p>
                     <router-link class="link" :to="'/registration'">{{$t('labels.Register')}}</router-link>
                 </div>
-                <h2 class="page-title flex-auto">Добре дошли отвъд океана!</h2>
+                <h2 class="page-title flex-auto">{{$t('pages.names.Welcome')}}</h2>
             </div>
-            <i18n path="pages.texts.pageHomeLoginStory" tag="p" class="page-text text-block text-left">
+            <i18n path="pages.texts.pageHomeLoginDescription" tag="p" class="page-text text-block">
                 <template #link>
                     <router-link class="link" :to="'/registration'">{{$t('labels.Register')}}</router-link>
                 </template>
