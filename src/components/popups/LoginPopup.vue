@@ -3,7 +3,7 @@
         <div class="popup-content relative">
             <form class="form">
                 <fieldset>
-                    <legend class="text-center text-big font-bold">{{$t('pages.titles.login')}}</legend>
+                    <legend class="text-center text-big font-bold">{{$t('pages.names.Login')}}</legend>
                     <div class="flex flex-col mb-big">
                         <label for="login-email" class="input-label pb-small pl-small">{{ $t('labels.Email:')
                             }}</label>

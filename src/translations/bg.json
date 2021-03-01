@@ -4,13 +4,14 @@
     "titles": {
       "home": "@:pages.names.Home | @:websiteName",
       "notFound": "404 | @:pages.names.NotFound",
-      "login": "Вход",
       "registration": "Регистрация | @:websiteName"
     },
     "names": {
       "Home": "Начало",
       "NotFound": "Ненамерено",
-      "Welcome": "Добре дошъл"
+      "Welcome": "Добре дошъл",
+      "Login": "Вход",
+      "Registration": "Регистрация"
     },
     "texts": {
       "pageNotFoundGoToHome": "Страницата, която търсите е недостъпна.",
@@ -26,6 +27,8 @@
     "Email:": "@:labels.Email:",
     "Password": "Парола",
     "Password:": "@:labels.Password:",
+    "RepeatPassword": "Повтори паролата",
+    "RepeatPassword:": "@:labels.RepeatPassword:",
     "Cancel": "Откажи",
     "OK": "ОК"
   },
@@ -33,13 +36,16 @@
     "YourEmail": "Твоят имейл",
     "YourEmailDots": "@:placeholders.YourEmail ...",
     "YourPassword": "Твоята парола",
-    "YourPasswordDots": "@:placeholders.YourPassword ..."
+    "YourPasswordDots": "@:placeholders.YourPassword ...",
+    "RepeatYourPassword": "Повтори твоята парола",
+    "RepeatYourPasswordDots": "@:placeholders.RepeatYourPassword ..."
   },
   "warnings": {
     "requiredField": "* Задължително поле",
     "invalidEmail": "* Невалиден имейл",
     "validField": "Валидно поле",
-    "passwordLengthRequirement": "Паролата трябва да съдържа поне {min} знака"
+    "passwordLengthRequirement": "Паролата трябва да съдържа поне {min} знака",
+    "repeatPasswordMismatch": "Въведените пароли не съвпадат"
   },
   "footer": {
     "createdByAuthor": "Създадено от: <strong>Даниел Тодоров</strong>"

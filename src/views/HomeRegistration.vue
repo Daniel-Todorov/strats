@@ -1,15 +1,14 @@
 <template>
     <section class="flex-auto flex justify-center">
-        <div class="container content text-center">
+        <div class="container content flex items-center justify-center">
             <form class="form">
                 <fieldset>
-                    <legend class="text-center text-big font-bold">{{$t('pages.titles.login')}}</legend>
+                    <legend class="mb-big text-center text-big font-bold">{{$t('pages.names.Registration')}}</legend>
                     <div class="flex flex-col mb-big">
-                        <label for="login-email" class="input-label pb-small pl-small">{{ $t('labels.Email:')
-                            }}</label>
-                        <input v-model.trim="user.email" @input="hasResponseEmailError = false" type="email" id="login-email"
+                        <label for="registration-email" class="input-label pb-small pl-small">{{ $t('labels.Email:') }}</label>
+                        <input v-model.trim="user.email" @input="hasResponseEmailError = false" type="email" id="registration-email"
                                :placeholder="$t('placeholders.YourEmailDots')"
-                               class="input" :class="{'has-error': hasResponseEmailError}" autocomplete="email">
+                               class="input" :class="{'has-error': hasResponseEmailError}" autocomplete="off">
                         <small v-if="!user.email" class="input-warning pt-smaller pl-small">
                             {{$t('warnings.requiredField')}}
                         </small>
@@ -21,12 +20,12 @@
                             {{$t('warnings.validField')}}
                         </small>
                     </div>
-                    <div class="flex flex-col mt-10">
-                        <label for="login-password" class="input-label pb-small pl-small">{{
+                    <div class="flex flex-col mb-big">
+                        <label for="registration-password" class="input-label pb-small pl-small">{{
                             $t('labels.Password:')}}</label>
-                        <input v-model.trim="user.password" @input="hasResponsePasswordError = false" type="password" id="login-password"
+                        <input v-model.trim="user.password" @input="hasResponsePasswordError = false" type="password" id="registration-password"
                                :placeholder="$t('placeholders.YourPasswordDots')"
-                               class="input" :class="{'has-error': hasResponsePasswordError}" autocomplete="current-password">
+                               class="input" :class="{'has-error': hasResponsePasswordError}" autocomplete="off">
                         <small v-if="!utilities.isValidPassword(user.password)"
                                class="input-warning pt-smaller pl-small">
                             {{$t('warnings.passwordLengthRequirement', {min: minPasswordLength})}}
@@ -35,9 +34,23 @@
                             {{$t('warnings.validField')}}
                         </small>
                     </div>
+                    <div class="flex flex-col">
+                        <label for="repeat-password" class="input-label pb-small pl-small">{{
+                            $t('labels.RepeatPassword:')}}</label>
+                        <input v-model.trim="user.repeatPassword" @input="hasResponseRepeatPasswordError = false" type="password" id="repeat-password"
+                               :placeholder="$t('placeholders.RepeatYourPasswordDots')"
+                               class="input" :class="{'has-error': hasResponseRepeatPasswordError}" autocomplete="off">
+                        <small v-if="user.password !== user.repeatPassword || !user.repeatPassword"
+                               class="input-warning pt-smaller pl-small">
+                            {{$t('warnings.repeatPasswordMismatch')}}
+                        </small>
+                        <small v-else class="input-ok pt-smaller pl-small">
+                            {{$t('warnings.validField')}}
+                        </small>
+                    </div>
                     <div class="text-center">
-                        <input v-on:click.prevent="login" :value="$t('labels.Login')"
-                               :disabled="!user.email || !utilities.isValidEmail(user.email) || !utilities.isValidPassword(user.password)"
+                        <input v-on:click.prevent="register" :value="$t('labels.Register')"
+                               :disabled="!user.email || !utilities.isValidEmail(user.email) || !utilities.isValidPassword(user.password) || user.password !== user.repeatPassword"
                                type="submit"
                                class="button w-full mt-bigger">
                     </div>
@@ -49,93 +62,58 @@
 
 <script>
     import BasicPage from '@/mixins/basicPage';
-    // import utilities from '../utilities';
-    // import database from '../database';
-    //
+    import utilities from '@/utilities';
+    import constants from '@/utilities/constants';
+    import request from '@/mixins/request';
+    import notify from '@/mixins/notify';
+
     export default {
         name: "HomeRegistration",
-        mixins: [BasicPage],
+        mixins: [BasicPage, request, notify],
         components: {
 
         },
         data() {
             return {
+                hasResponseEmailError: false,
+                hasResponsePasswordError: false,
+                hasResponseRepeatPasswordError: false,
+                minPasswordLength: constants.minPasswordLength,
                 user: {
                     email: '',
-                    password: ''
+                    password: '',
+                    repeatPassword: ''
                 },
-                // utilities: utilities
+                utilities: utilities
             }
         },
         methods: {
-            toggleLoginPopup() {
-                this.$refs.loginPopup.toggle();
+            register: function (event) {
+                const component = this;
+
+                event.target.setAttribute('disabled', true);
+
+                component.ajax('post', 'user', component.user)
+                    .then((response) => {
+                        console.log(response);
+                    }).catch((error) => {
+                    component.notify({
+                        mode: 'error',
+                        title: component.$i18n.t('notifications.title.Error'),
+                        text:  component.$i18n.t('notifications.text.generalServerError'),
+                        closeCallback: () => {
+                            event.target.disabled = false;
+                        }
+                    })
+                });
             }
-    //         login: function (event) {
-    //             const component = this;
-    //
-    //             event.target.setAttribute('disabled', true);
-    //
-    //             database.user.login({
-    //                 email: component.user.email,
-    //                 password: component.user.password
-    //             }).then(function (response) {
-    //                 const data = response.data;
-    //
-    //                 database.localStorage.setItem('token', data.token);
-    //
-    //                 component.$router.push('app');
-    //             }).catch(function (error) {
-    //                 alert(component.$i18n.t(error.response.data.message));
-    //             }).finally(function () {
-    //                 event.target.removeAttribute('disabled');
-    //             });
-    //         }
         }
     }
 </script>
 
 <style scoped>
-    .login-holder {
-        padding-top: 8px;
-        padding-bottom: 8px;
-    }
-
-    .login-button {
-        border-radius: 4px;
-    }
-
-    .title-section {
-
-    }
-
-    .page-title {
-        padding-top: 32px;
-        padding-bottom: 32px;
-    }
-
-    .page-text {
-        padding-bottom: 32px;
-    }
-
     h2 {
         font-size: var(--font-size-biggest);
         font-weight: bold;
-    }
-
-    .email-input {
-        width: 150px;
-        max-width: 150px;
-        border-right: none;
-        border-radius: 4px 0 0 4px;
-    }
-
-    .password-input {
-
-    }
-
-    .or {
-        padding: 8px;
-        font-size: var(--font-size-small);
     }
 </style>
